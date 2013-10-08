@@ -1,0 +1,17 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use File::Find;
+use Cwd;
+
+my $directory = $ARGV[0];
+
+find(\&wanted,$directory);
+
+sub wanted {
+    if ($File::Find::name =~ m/..\.lp/) {
+	system("/home/kim/cass/mylpex2.py",getcwd."/" .$_ . "\n","o");
+	print getcwd."/" .$_ . "\n";
+    }
+
+}
